@@ -1,0 +1,5 @@
+go 
+   select*
+   from NHANVIEN
+   where NHANVIEN.LUONG>25000 and NHANVIEN.PHG=4 OR NHANVIEN.LUONG>30000 and NHANVIEN.PHG=5
+go
