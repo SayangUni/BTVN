@@ -1,4 +1,4 @@
-﻿--bài 1a
+--BÀI 1A
 create proc lab5_bai1_a @name nvarchar(20)
 as
 	begin
@@ -6,7 +6,8 @@ as
 	end
 exec lab5_bai1_a 'Hoài Linh'
 go
---bài 1b
+
+--BÀI 1B
 create proc lab5_bai1_b @so1 int, @so2 int
 as
 	begin
@@ -17,7 +18,8 @@ as
 
 exec lab5_bai1_b 7,8
 go
---bài 1c
+
+--BÀI 1C
 create proc lab5_bai1_c @l int
 as
 	begin
@@ -31,7 +33,8 @@ as
 	end
 exec lab5_bai1_c 15
 go
---bài 1d
+
+--BÀI 1D
 create proc lab5_bai1_d @a int, @b int
 as
 	begin
@@ -48,7 +51,8 @@ declare @l int
 exec @l = lab5_bai1_d 5,7
 print @l
 go
---bài 2a
+
+--BÀI 2A
 create proc lab5_bai2_a @MaNV varchar(20)
 as
 	begin
@@ -56,7 +60,8 @@ as
 	end
 exec lab5_bai2_a '003'
 go
---bài 2b
+
+--BÀI 2B
 select count(MANV), MADA, TENPHG from NHANVIEN
 inner join PHONGBAN on NHANVIEN.PHG = PHONGBAN.MAPHG
 inner join DEAN on DEAN.PHONG = PHONGBAN.MAPHG
@@ -74,14 +79,16 @@ begin
 end
 exec lab5_bai2_b 10
 go
---bài 2c
+
+--BÀI 2C
 select count(MANV)as 'so luong', MADA, TENPHG from NHANVIEN
 inner join PHONGBAN on NHANVIEN.PHG = PHONGBAN.MAPHG
 inner join DEAN on DEAN.PHONG = PHONGBAN.MAPHG
 where MADA = 2 and DDIEM_DA = 'Nha Trang'
 group by TENPHG,MADA
 go
---bài 2d
+
+--BÀI 2D
 select HONV, TENNV, TENPHG, NHANVIEN.MANV, THANNHAN.*
 from NHANVIEN
 inner join PHONGBAN on PHONGBAN.MAPHG = NHANVIEN.PHG
@@ -100,7 +107,8 @@ end
 
 exec lab5_bai2_d '008'
 go
---bài 2e
+
+--BÀI 2E
 if exists (select * from NHANVIEN where MANV = '001' and PHG = '5')
 print 'Nhan vien co trong phong ban'
 else 
@@ -116,7 +124,8 @@ else
 end
 
 exec lab5_bai2_e '001','5'
---bài 3a
+
+--BÀI 3A
 insert into PHONGBAN(MAPHG, TENPHG, TRPHG, NG_NHANCHUC)
 values ('7','CNTT','008','2002-07-28')
 
@@ -136,9 +145,8 @@ as
 end
 
 exec lab5_bai3_a '7','CNTT','008','2002-07-28'
---bài 3b
 
-
+--BÀI 3B
 create proc lab5_bai3_b
 	@MaPB int, @TenPB nvarchar(20),
 	@MaTP varchar(10), @NgayNhanChuc date
