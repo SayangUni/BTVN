@@ -18,8 +18,8 @@ INSERT INTO [dbo].[NHANVIEN] ([HONV],[TENLOT],[TENNV],[MANV],[NGSINH],[DCHI],[PH
 VALUES(N'pham',N'minh',N'tuan','098','09-19-2002,' HCM','Nam',1000,'008',1)
 GO
 
---cau 1b--
---Ràng buộc khi thêm mới nhân viên thì độ tuổi phải nằm trong khoảng 18 <= tuổi <=65.--
+--cau 1b
+--Ràng buộc khi thêm mới nhân viên thì độ tuổi phải nằm trong khoảng 18 <= tuổi <=65
 
 create trigger trg_CheckTuoi
 	on NHANVIEN
@@ -54,6 +54,7 @@ UPDATE [dbo].[NHANVIEN]
 GO
 
 ----bài 2
+
 CREATE TRIGGER trg_SumEmps
    ON NHANVIEN
    AFTER INSERT
