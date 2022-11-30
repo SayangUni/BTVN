@@ -12,7 +12,7 @@ as
 		rollback tran
 	end
 	
-  --test
+--test
 SELECT * FROM NHANVIEN
 INSERT INTO [dbo].[NHANVIEN] ([HONV],[TENLOT],[TENNV],[MANV],[NGSINH],[DCHI],[PHAI],[LUONG],[MA_NQL],[PHG])
 VALUES(N'pham',N'minh',N'tuan','098','09-19-2002,' HCM','Nam',1000,'008',1)
