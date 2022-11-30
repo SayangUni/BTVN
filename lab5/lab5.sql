@@ -124,4 +124,84 @@ else
 end
 
 exec lab5_bai2_e '001','5'
+--BÀI 3
+--Thêm phòng ban có tên CNTT vào csdl QLDA, các giá trị được thêm vào dưới dạng
+--tham số đầu vào, kiếm tra nếu trùng Maphg thì thông báo thêm thất bại.
+insert into PHONGBAN(MAPHG, TENPHG, TRPHG, NG_NHANCHUC)
+values ('7','CNTT','008','2002-07-28')
+
+create proc lab5_bai3_a
+	@MaPB int, @TenPB nvarchar(20),
+	@MaTP varchar(10), @NgayNhanChuc date
+as
+	begin
+		if(exists(select * from PHONGBAN where MaPHG=@MaPB))
+			print'Them that bai'
+		else 
+			begin
+				insert into PHONGBAN(MAPHG, TENPHG, TRPHG, NG_NHANCHUC)
+				values (@MaPB,@TenPB,@MaTP,@NgayNhanChuc)
+				print 'Them thanh cong'
+		end
+end
+
+exec lab5_bai3_a '7','CNTT','008','2002-07-28'
+
+--Cập nhật phòng ban có tên CNTT thành phòng IT.
+create proc lab5_bai3_b
+	@MaPB int, @TenPB nvarchar(20),
+	@MaTP varchar(10), @NgayNhanChuc date
+as
+	begin
+		if(exists(select * from PHONGBAN where MaPHG=@MaPB))
+			update PHONGBAN set TENPHG =@TenPB, TRPHG=@MaTP,NG_NHANCHUC =@NgayNhanChuc
+			where MAPHG = @MaPB
+		else 
+			begin
+				insert into PHONGBAN(MAPHG, TENPHG, TRPHG, NG_NHANCHUC)
+				values (@MaPB,@TenPB,@MaTP,@NgayNhanChuc)
+				print 'Them thanh cong'
+		end
+end
+
+exec lab5_bai3_b '7','CNTT','008','2002-07-28'
+--bài 3c
+--Thêm một nhân viên vào bảng NhanVien, tất cả giá trị đều truyền dưới dạng tham số đầu vào với điều kiện: 
+--+Nhân viên này trực thuộc phòng IT
+--+Nhận @luong làm tham số đầu vào cho cột Luong, nếu @luong<25000 thì nhân viên này do nhân viên có mã 009 quản lý, ngươc lại do nhân viên có mã 005 quản lý
+--+Nếu là nhân viên nam thi nhân viên phải nằm trong độ tuổi 18-65, nếu là nhân viên nữ thì độ tuổi phải từ 18-60.
+select HONV, TENLOT, TENNV, MANV, NGSINH, DCHI, PHAI, LUONG, MA_NQL, PHG from NHANVIEN
+insert into NHANVIEN(HONV, TENLOT, TENNV, MANV, NGSINH, DCHI, PHAI, LUONG, MA_NQL, PHG)
+values('Lê', 'Hoài', 'Linh', '129', '2002-07-28', 'Tây Ninh', 'Nam','25000', '004', '6')
+
+create proc lab5_bai3_c
+@HONV varchar(10), @TENLOT varchar(10), @TENNV varchar(10),
+@MANV varchar(10), @NGSINH date, @DCHI varchar(50), @PHAI varchar(10),
+@LUONG float, @MA_NQL varchar(10) = null, @PHG int
+as
+begin
+	declare @age int
+	set @age = YEAR(GETDATE()) - YEAR(@NGSINH)
+	if @PHG = (select MaPHG from PHONGBAN where TENPHG ='CNTT')
+		begin
+			if @LUONG < 25000
+				set @MA_NQL = '009'
+			else set @MA_NQL= '005'
+
+			if(@PHAI = 'Nam' and (@age >= 18 and @age <= 65))
+				or (@PHAI = N'Nữ' and (@age >= 18 and @age <= 60))
+				begin
+					insert into NHANVIEN(HONV, TENLOT, TENNV, MANV, NGSINH, DCHI, PHAI, LUONG, MA_NQL, PHG)
+					values(@HONV, @TENLOT, @TENNV, @MANV, @NGSINH, @DCHI, @PHAI, @LUONG, @MA_NQL, @PHG)
+				end
+			else
+				print 'khong thuoc do tuoi lao dong'
+		end
+	else
+		print 'khong phai phong CNTT'
+end
+exec lab5_bai3_c 'Lê', 'Thiên', 'Tiên', '129', '2002-07-28', 'Tây Ninh', 'Nam','25000', '004', '6'
+exec lab5_bai3_c 'Nguyễn', 'Hoài', 'Tính', '130', '2020-09-5', 'TP HCM', 'Nam','25000', '005', '9'
+exec lab5_bai3_c 'Đặng', 'Văn', 'Linh', '018', '1954-02-11', 'Bình Định', 'Nam','25000', '004', '6'
+
 
