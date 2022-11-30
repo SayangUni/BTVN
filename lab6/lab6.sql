@@ -34,7 +34,7 @@ as
 ---Test
 INSERT INTO [dbo].[NHANVIEN] ([HONV],[TENLOT],[TENNV] ,[MANV] ,[NGSINH],[DCHI],[PHAI],[LUONG],[MA_NQL],[PHG])
   VALUES(N'pham',N'minh',N'tuan','098','09-19-2002',' HCM','Nam',1000,'008',1)
-GO
+
 ---câu 1c
 
 CREATE TRIGGER trg_CheckUpdateOnAddress
@@ -67,7 +67,7 @@ AS
 ---test
 INSERT INTO [dbo].[NHANVIEN]([HONV],[TENLOT],[TENNV],[MANV],[NGSINH],[DCHI],[PHAI],[LUONG],[MA_NQL],[PHG])
 VALUES ('A','B','C','345','7-12-1999','HCM','Nam',1000,'008',1)
-GO
+
  --BÀI 2B
  
 CREATE TRIGGER trg_SumEmpsForUpdate
