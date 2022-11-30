@@ -37,6 +37,7 @@ INSERT INTO [dbo].[NHANVIEN] ([HONV],[TENLOT],[TENNV] ,[MANV] ,[NGSINH],[DCHI],[
   VALUES(N'pham',N'minh',N'tuan','098','09-19-2002',' HCM','Nam',1000,'008',1)
 GO
 ---câu 1c
+
 CREATE TRIGGER trg_CheckUpdateOnAddress
    ON NHANVIEN
    FOR UPDATE
@@ -68,6 +69,7 @@ INSERT INTO [dbo].[NHANVIEN]([HONV],[TENLOT],[TENNV],[MANV],[NGSINH],[DCHI],[PHA
 VALUES ('A','B','C','345','7-12-1999','HCM','Nam',1000,'008',1)
 GO
  --BÀI 2B
+ 
 CREATE TRIGGER trg_SumEmpsForUpdate
 ON NHANVIEN
 AFTER update
@@ -87,6 +89,7 @@ UPDATE [dbo].[NHANVIEN]
  WHERE  MaNV = '345'
 GO
 ---BÀI 2C
+
 CREATE TRIGGER trg_SumForDelete
    on DEAN
    AFTER DELETE
@@ -96,6 +99,7 @@ AS
 go
 
 --BÀI 3A
+
 CREATE TRIGGER trg_deleteNhanThanNV ON NHANVIEN
 INSTEAD OF DELETE 
 AS
