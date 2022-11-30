@@ -205,3 +205,5 @@ exec lab5_bai3_c 'Nguyễn', 'Hoài', 'Tính', '130', '2020-09-5', 'TP HCM', 'Na
 exec lab5_bai3_c 'Đặng', 'Văn', 'Linh', '018', '1954-02-11', 'Bình Định', 'Nam','25000', '004', '6'
 
 
+
+
