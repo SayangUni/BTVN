@@ -1,7 +1,7 @@
 --Bài 1:
 --Viết trigger DML:
-➢ Ràng buộc khi thêm mới nhân viên thì mức lương phải lớn hơn 15000, nếu vi phạm thì
-xuất thông báo “luong phải >15000’
+-- Ràng buộc khi thêm mới nhân viên thì mức lương phải lớn hơn 15000, nếu vi phạm thì xuất thông báo “luong phải >15000’
+
 create trigger trg_CheckLuong15000 
 	on NHANVIEN
 	for insert, update
@@ -11,13 +11,16 @@ as
 		print N'Lương < 15000'
 		rollback tran
 	end
+	
   --test
 SELECT * FROM NHANVIEN
 INSERT INTO [dbo].[NHANVIEN] ([HONV],[TENLOT],[TENNV],[MANV],[NGSINH],[DCHI],[PHAI],[LUONG],[MA_NQL],[PHG])
 VALUES(N'pham',N'minh',N'tuan','098','09-19-2002,' HCM','Nam',1000,'008',1)
 GO
---cau 1b
-➢ Ràng buộc khi thêm mới nhân viên thì độ tuổi phải nằm trong khoảng 18 <= tuổi <=65.
+
+--cau 1b--
+--Ràng buộc khi thêm mới nhân viên thì độ tuổi phải nằm trong khoảng 18 <= tuổi <=65.--
+
 create trigger trg_CheckTuoi
 	on NHANVIEN
 	for insert
