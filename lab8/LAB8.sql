@@ -1,3 +1,4 @@
+--I
 --2. Thêm vào thuộc tính GHICHU có kiểu dữ liệu varchar(20) cho quan hệ SANPHAM.
 ALTER TABLE SANPHAM
 ADD GHICHU VARCHAR(20)
