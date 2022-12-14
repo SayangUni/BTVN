@@ -6,7 +6,7 @@ create table LOP
 (
 MALOP nvarchar(20),
 TENLOP nvarchar(15),
-sISO int not null,
+SISO int not null,
 constraint PK_LOP primary key(MALOP)
 )
 
