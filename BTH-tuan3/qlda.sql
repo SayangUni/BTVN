@@ -1,6 +1,7 @@
-
-USE	qlda2
---1)
+create database QuanLyDeAn
+GO
+USE QuanLyDeAn
+GO
 create table PHONGBAN(
 MaPhg varchar(2) ,
 TenPhg nvarchar(20) not null,
