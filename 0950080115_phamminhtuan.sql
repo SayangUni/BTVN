@@ -37,7 +37,7 @@ Grant succeeded
 ---của chính SV dự thi) thành 123-456-7890
 
 select * from Person.PersonPhone where BusinessEntityID = 0115
-insert into Person.PersonPhone values(0115, '290802' , 2 ,getdate())
+insert into Person.PersonPhone values(0115, '12345' , 2 ,getdate())
 
 -Nhân viên NV2 xóa số điện thoại của người có BusinessEntityID=(3 ký tự đầu của Mã SV
 của chính SV dự thi).
