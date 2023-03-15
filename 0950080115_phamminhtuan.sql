@@ -20,24 +20,24 @@ WITH PASSWORD = '123321';
 ---phân công ở trên để các nhân viên hoàn thành nhiệm vụ (1đ).
 grant insert, select, update on Person.PersonPhone to [NV1]
 
-grant insert, select, update on Person.PersonPhone to [NV2] 
+grant insert, select, update on Person.PersonPhone to [NV2]
+--Gán role NHANVIEN cho NV1 và NV2
+GRANT NHANVIEN TO NV1, NV2;
+Grant succeeded. 
 
-ALTER SERVER ROLE db_datareader
-	ADD Member QL;  
+GRANT SELECT ON Person.PersonPhone TO db_datareader;
+GRANT SELECT ON Person.Person  TO db_datareader;
 GO
+--Gán role db_datareader cho QL
+GRANT db_datareader TO QL;
+Grant succeeded
 ---c. SV ghi chú lại Mã SV của mình. Đăng nhập phù hợp, mở cửa sổ query tương ứng và viết
 ---lệnh để:
 ---Nhân viên NV1 sửa số điện thoại của người có BusinessEntityID=(3 ký tự cuối của Mã SV
 ---của chính SV dự thi) thành 123-456-7890
 
-DECLARE @LoginID nvarchar(max) = 'NV1'
-
-update
-	Person.PersonPhone
-set
-	LoginID = @LoginID
-where
-	BusinessEntityID = 115
+select * from Person.PersonPhone where BusinessEntityID = 0115
+insert into Person.PersonPhone values(0115, '290802' , 2 ,getdate())
 
 -Nhân viên NV2 xóa số điện thoại của người có BusinessEntityID=(3 ký tự đầu của Mã SV
 của chính SV dự thi).
@@ -47,10 +47,12 @@ của chính SV dự thi).
 các query này vào thư mục bài làm) (1đ).
 d. Ai có thể xem dữ liệu bảng Person.Person? Giải thích. Viết lệnh kiểm tra quyền trên cửa sổ
 query của user tương ứng (1đ).
----e. Các nhân viên quản lý NV1, NV2, QL hoàn thành dự án, admin thu hồi quyền đã cấp. Xóa
----role NhanVien. (1đ).
-DROP ROLE NV1
-DROP ROLE NV2
+-- e. Các nhân viên quản lý NV1, NV2, QL hoàn thành dự án, admin thu hồi quyền đã cấp. Xóa role NhanVien.
+-- Thu hồi quyền
+REVOKE Nhanvien FROM NV1,NV2,QL;
+Revoke succeeded.
+-- Xóa role NhanVien
+DROP ROLE NhanVien 
 --Hãy lên kế hoạch phục hồi cơ sở dữ liệu cho các hoạt động sau bằng cách viết các lệnh Backup
 ---tại các vị trí [...] để thực hiện Restore cơ sở dữ liệu theo yêu cầu ở câu d.
 ---a. Tạo một giao tác tăng lương (Rate) thêm 20% cho các nhân viên làm việc ở phòng
